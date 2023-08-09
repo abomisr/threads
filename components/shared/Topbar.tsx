@@ -1,5 +1,7 @@
+import { OrganizationSwitcher, SignOutButton, SignedIn } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
+import Logout from "../buttons/Logout"
 
 const Topbar = () => {
   return (
@@ -15,6 +17,19 @@ const Topbar = () => {
           Threads
         </p>
       </Link>
+
+      <div className="flex items-center gap-1">
+        <div className="max-md:block hidden">
+        <Logout />
+        </div>
+        <OrganizationSwitcher 
+          appearance={{
+            elements:{
+              organizationSwitcherTrigger: "py-2 px-4"
+            }
+          }}
+        />
+      </div>
     </nav>
   )
 }
