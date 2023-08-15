@@ -14,7 +14,7 @@ const threadSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Community",
   },
-  createdAt: {
+  writtenAt: {
     type: Date,
     default: Date.now,
   },

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -94,7 +93,7 @@ const AccountProfile: React.FC<AccountProfileProps> = ({ user, btnLabel }) => {
         })
 
 
-        if(pathname === "/profile/edit") return router.back()
+        if (pathname === "/profile/edit") return router.back()
         router.push("/")
     }
 
@@ -143,6 +142,7 @@ const AccountProfile: React.FC<AccountProfileProps> = ({ user, btnLabel }) => {
                                     onChange={(e) => handleImage(e, field.onChange)}
                                 />
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -163,6 +163,7 @@ const AccountProfile: React.FC<AccountProfileProps> = ({ user, btnLabel }) => {
                                     }
                                 />
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -183,6 +184,7 @@ const AccountProfile: React.FC<AccountProfileProps> = ({ user, btnLabel }) => {
                                     }
                                 />
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -204,6 +206,7 @@ const AccountProfile: React.FC<AccountProfileProps> = ({ user, btnLabel }) => {
                                     }
                                 />
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />

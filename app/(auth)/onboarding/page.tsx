@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs"
 
 const page = async () => {
   const user = await currentUser();
-  const userFromDB = {}
+  const userFromDB:any = {}
 
   const userData = {
     id: user?.id,

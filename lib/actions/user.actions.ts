@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
+import Community from "../models/community.model";
 
 interface Props {
   id: string;
@@ -43,3 +44,18 @@ export async function updateUser({
     throw new Error(`Failed to write/update user: ${err.message}`);
   }
 }
+export async function fetchUser(userId:string) {
+  try {
+    connectToDB();
+  
+    return await User.findOne({id:userId})
+    // .populate({
+    //   path:"communities",
+    //   model:Community,
+    // })
+  } catch (err: any) {
+    throw new Error(`Failed to fetch user: ${err.message}`);
+  }
+}
+
+
