@@ -9,7 +9,7 @@ export const metadata = {
     description: "Awesome Threads Application Clone with Next.js 13"
 }
 
-const inter = Inter({subsets:["latin"]})
+const inter = Inter({ subsets: ["latin"] })
 
 export default function RootLayout({
     children
@@ -18,15 +18,17 @@ export default function RootLayout({
 }) {
     return (
         <ClerkProvider
-        appearance={{
-            baseTheme: dark,
-          }}
+            appearance={{
+                baseTheme: dark,
+            }}
         >
             <html
                 lang="html"
             >
                 <body className={inter.className + " bg-dark-1"}>
-                    {children}
+                    <div className="w-full flex justify-center items-center min-h-screen">
+                        {children}
+                    </div>
                 </body>
             </html>
         </ClerkProvider>

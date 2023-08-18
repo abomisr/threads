@@ -131,3 +131,31 @@ export const fetchUsers = async ({
     throw new Error(`Failed to search users: ${err.message}`);
   }
 };
+
+
+export const getActivity = async (userId:string) =>{
+  try {
+    connectToDB();
+
+    const userThreads = await Thread.find({
+      author:userId
+    });
+
+    const childThreadIds = userThreads.reduce((acc,userThread)=>{
+      return acc.concat(userThread.children)
+    },[])
+
+    const replies = await Thread.find({
+      _id: { $in: childThreadIds },
+      author: {$ne:userId}
+    }).populate({
+      path:"author",
+      model:User,
+      select:"image name _id"
+    })
+
+    return replies
+  } catch (err:any) {
+    throw new Error(`Failed to get Activity: ${err.message}`);
+  }
+}
