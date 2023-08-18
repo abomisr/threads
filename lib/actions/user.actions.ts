@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
 import Community from "../models/community.model";
+import Thread from "../models/thread.model";
 
 interface Props {
   id: string;
@@ -44,11 +45,11 @@ export async function updateUser({
     throw new Error(`Failed to write/update user: ${err.message}`);
   }
 }
-export async function fetchUser(userId:string) {
+export async function fetchUser(userId: string) {
   try {
     connectToDB();
-  
-    return await User.findOne({id:userId})
+
+    return await User.findOne({ id: userId });
     // .populate({
     //   path:"communities",
     //   model:Community,
@@ -58,4 +59,27 @@ export async function fetchUser(userId:string) {
   }
 }
 
+export const fetchUserPosts = async (userId: string) => {
+  try {
+    connectToDB();
 
+    const threads = await User.findById(userId)
+    .populate({
+      path:"threads",
+      model:Thread,
+      populate:{
+        path:"children",
+        model:Thread,
+        populate:{
+          path:"author",
+          model:User,
+          select:"image name id"
+        }
+      }
+    })
+
+    return threads
+  } catch (err:any) {
+    throw new Error(`Failed to fetch user posts: ${err.message}`);
+  }
+};

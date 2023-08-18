@@ -5,9 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from "next/navigation"
 import Logout from '../buttons/Logout';
+import { useAuth } from '@clerk/nextjs';
 
 const LeftSidebar = () => {
   const pathname = usePathname();
+  const {userId} = useAuth()
 
   return (
     <section className='custom-scrollbar leftsidebar'>
@@ -16,6 +18,8 @@ const LeftSidebar = () => {
           sidebarLinks.map((link) => {
             const isActive = (pathname.includes(link.href) && link.href.length > 1) || pathname === link.href;
 
+            if(link.href === "/profile") link.href = `${link.href}/${userId}`
+            
             return (
               <Link
                 key={link.href}
