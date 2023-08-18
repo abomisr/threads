@@ -19,7 +19,6 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { ThreadValidation } from "@/lib/validations/thread";
 import { writeThread } from "@/lib/actions/thread.actions";
-// import { updateUser } from "@/lib/actions/user.actions";
 
 interface AccountProfileProps {
   user: {
@@ -55,6 +54,7 @@ const PostThread = ({ userId }: { userId: string }) => {
 
     router.push("/")
   }
+
   return (
     <Form {...form}>
       <form
