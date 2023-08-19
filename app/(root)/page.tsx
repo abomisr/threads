@@ -1,9 +1,12 @@
 import ThreadCard from "@/components/cards/ThreadCard";
 import { fetchPosts } from "@/lib/actions/thread.actions";
+import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 
 export default async function Home() {
   const user = await currentUser();
+  if(!user) return null
+  const userInfo = await fetchUser(user?.id);
   const result = await fetchPosts(1, 30);
 
 
@@ -24,7 +27,7 @@ export default async function Home() {
               {result.posts.map((post) => (
                 <ThreadCard
                   key={post._id}
-                  id={post._id}
+                  id={post.id}
                   currentUserId={user?.id || ""}
                   parentId={post.parentId}
                   content={post.text}
@@ -32,6 +35,7 @@ export default async function Home() {
                   community={post.community}
                   writtenAt={post.writtenAt}
                   comments={post.children}
+                  isLiked={userInfo?.likedThreads?.includes(post._id)}
                 />
               ))}
             </>

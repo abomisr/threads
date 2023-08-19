@@ -64,7 +64,7 @@ export const fetchUserPosts = async (userId: string) => {
   try {
     connectToDB();
 
-    const threads = await User.findById(userId).populate({
+    const threads = await User.findOne({id:userId}).populate({
       path: "threads",
       model: Thread,
       populate: {
@@ -73,7 +73,7 @@ export const fetchUserPosts = async (userId: string) => {
         populate: {
           path: "author",
           model: User,
-          select: "image name id",
+          select: "image name _id",
         },
       },
     });

@@ -71,6 +71,7 @@ const Comment = ({
                                     alt={"Profile image"}
                                     width={48}
                                     height={48}
+                                    className="rounded-full"
                                 />
                             </FormLabel>
                             <FormControl className="border-none bg-transparent">

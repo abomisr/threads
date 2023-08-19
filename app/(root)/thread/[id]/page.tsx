@@ -19,7 +19,6 @@ const page = async ({ params }: { params: { id: string } }) => {
         <section className="relative">
             <div>
                 <ThreadCard
-                    key={thread.id}
                     id={thread.id}
                     currentUserId={user?.id || ""}
                     parentId={thread.parentId}
@@ -28,6 +27,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                     community={thread.community}
                     writtenAt={thread.writtenAt}
                     comments={thread.children}
+                    isLiked={userInfo?.likedThreads?.includes(thread._id)}
                 />
             </div>
             <div className="mt-7">
@@ -42,7 +42,6 @@ const page = async ({ params }: { params: { id: string } }) => {
                 {
                     thread.children.map((childItem: any) => (
                         <ThreadCard
-                            key={childItem.id}
                             id={childItem.id}
                             currentUserId={user?.id || ""}
                             parentId={childItem.parentId}
@@ -52,6 +51,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                             writtenAt={childItem.writtenAt}
                             comments={childItem.children}
                             isComment
+                            isLiked={userInfo.likedThreads.includes(childItem._id)}
                         />
                     ))
                 }

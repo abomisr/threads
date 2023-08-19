@@ -1,6 +1,7 @@
 import { formatDateString } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
+import ThreadCardControl from "../ThreadCardControl"
 
 
 interface Props {
@@ -24,6 +25,7 @@ interface Props {
             image: string,
         }
     }[],
+    isLiked: boolean,
     isComment?: boolean,
 }
 const ThreadCard = ({
@@ -36,7 +38,10 @@ const ThreadCard = ({
     writtenAt,
     comments,
     isComment,
+    isLiked,
 }: Props) => {
+    
+
     return (
         <article className={`flex flex-col rounded-xl w-full 
             ${isComment ? "px-0 xs:px-7" : "p-7 bg-dark-2"}
@@ -68,38 +73,11 @@ const ThreadCard = ({
                         </p>
 
                         <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
-                            <div className="flex gap-3.5">
-                                <Image
-                                    src={"/assets/heart-gray.svg"}
-                                    alt="heart"
-                                    width={24}
-                                    height={24}
-                                    className="cursor-pointer object-contain"
-                                />
-                                <Link href={`/thread/${id}`}>
-                                    <Image
-                                        src={"/assets/reply.svg"}
-                                        alt="reply"
-                                        width={24}
-                                        height={24}
-                                        className="cursor-pointer object-contain"
-                                    />
-                                </Link>
-                                <Image
-                                    src={"/assets/repost.svg"}
-                                    alt="repost"
-                                    width={24}
-                                    height={24}
-                                    className="cursor-pointer object-contain"
-                                />
-                                <Image
-                                    src={"/assets/share.svg"}
-                                    alt="share"
-                                    width={24}
-                                    height={24}
-                                    className="cursor-pointer object-contain"
-                                />
-                            </div>
+                            <ThreadCardControl
+                                isLiked={isLiked}
+                                userId={currentUserId}
+                                threadId={id}
+                             />
 
                             {
                                 isComment && comments.length > 0 && (
