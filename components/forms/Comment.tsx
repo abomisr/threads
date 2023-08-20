@@ -69,9 +69,9 @@ const Comment = ({
                                 <Image
                                     src={currentUserImage}
                                     alt={"Profile image"}
-                                    width={48}
-                                    height={48}
-                                    className="rounded-full"
+                                    width={100}
+                                    height={100}
+                                    className="rounded-full object-cover !w-12 !h-12"
                                 />
                             </FormLabel>
                             <FormControl className="border-none bg-transparent">
