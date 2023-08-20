@@ -35,6 +35,7 @@ export default async function Home() {
                   community={post.community}
                   writtenAt={post.writtenAt}
                   comments={post.children}
+                  likes={post?.likes}
                   isLiked={userInfo?.likedThreads?.includes(post._id)}
                 />
               ))}

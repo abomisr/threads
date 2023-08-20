@@ -44,6 +44,7 @@ const ThreadsTab = async ({
                         community={thread.community}
                         writtenAt={thread.writtenAt}
                         comments={thread.children}
+                        likes={thread?.likes}
                         isLiked={userInfo?.likedThreads?.includes(thread._id)}
                     />
                 ))

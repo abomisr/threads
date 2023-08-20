@@ -27,6 +27,7 @@ interface Props {
     }[],
     isLiked: boolean,
     isComment?: boolean,
+    likes:string[],
 }
 const ThreadCard = ({
     id,
@@ -39,8 +40,9 @@ const ThreadCard = ({
     comments,
     isComment,
     isLiked,
+    likes,
 }: Props) => {
-    
+
 
     return (
         <article className={`flex flex-col rounded-xl w-full 
@@ -77,7 +79,8 @@ const ThreadCard = ({
                                 isLiked={isLiked}
                                 userId={currentUserId}
                                 threadId={id}
-                             />
+                                likes={likes}
+                            />
 
                             {
                                 isComment && comments.length > 0 && (
