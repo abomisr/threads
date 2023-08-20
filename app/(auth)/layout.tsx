@@ -25,7 +25,7 @@ export default function RootLayout({
             <html
                 lang="html"
             >
-                <body className={inter.className + " bg-dark-1"}>
+                <body className={inter.className + " bg-gradient-to-b from-slate-950 to-slate-800 via-slate-900"}>
                     <div className="w-full flex justify-center items-center min-h-screen">
                         {children}
                     </div>
